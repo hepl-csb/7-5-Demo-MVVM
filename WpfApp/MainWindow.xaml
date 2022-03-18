@@ -1,0 +1,27 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp"
+        xmlns:Models="clr-namespace:Models;assembly=Models" x:Class="WpfApp.MainWindow"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <StackPanel x:Name="myStackpanel" Margin="20">
+        <StackPanel.DataContext>
+            <local:MainWindowViewModel/>
+        </StackPanel.DataContext>
+
+        <ListView  x:Name="ListViewPeople" ItemsSource="{Binding People,Mode=TwoWay}" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <WrapPanel>
+                        <TextBlock Text="Name: " />
+                        <TextBlock Text="{Binding Name}"/>
+                    </WrapPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button x:Name="BtnToUpper" Content="Toggle Case" Click="BtnToggle_Click" Margin="0,20,0,0"/>
+    </StackPanel>
+</Window>
