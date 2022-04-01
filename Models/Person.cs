@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace Models
 {
@@ -9,10 +10,10 @@ namespace Models
 
         public string Name
         {
-            get { return _name; }
+            get => _name;
             set { 
                 _name = value;
-                PropertyChangedEventHandler(this, new PropertyChangedEventArgs("Name"));
+                PropertyChangedEventHandler();
             }
         }
 
@@ -20,9 +21,9 @@ namespace Models
         {
             Name = name;
         }
-        private void PropertyChangedEventHandler(Person person, PropertyChangedEventArgs propertyChangedEventArgs)
+        private void PropertyChangedEventHandler([CallerMemberName] string propertyname = null)
         {
-            PropertyChanged?.Invoke(person, propertyChangedEventArgs);
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyname));
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;

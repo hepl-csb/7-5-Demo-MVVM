@@ -25,12 +25,13 @@ namespace WpfApp
         {
             InitializeComponent();
             _viewModel = new MainWindowViewModel();
-            myStackpanel.DataContext = _viewModel;
+            //Ici le this, à savoir la fenêtre est sous-entendu.
+            // Donc c'est bien le dataContext de la fenêtre qui vaut _viewModel
+            DataContext = _viewModel;
         }
 
         private void BtnToggle_Click(object sender, RoutedEventArgs e)
         {
-   
             _viewModel.ToggleCase();
         }
     }
