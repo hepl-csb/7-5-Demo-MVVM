@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Models;
 
 namespace WpfApp
 {
@@ -33,6 +34,16 @@ namespace WpfApp
         private void BtnToggle_Click(object sender, RoutedEventArgs e)
         {
             _viewModel.ToggleCase();
+        }
+
+        private void ListViewPeople_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            _viewModel.CurrentPerson = ListViewPeople.SelectedItem as Person;
+        }
+
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            _viewModel.CurrentPerson = DataGrid.CurrentItem as Person;
         }
     }
 }

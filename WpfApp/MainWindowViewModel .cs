@@ -2,17 +2,32 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 
 namespace WpfApp
 {
-    internal class MainWindowViewModel
+    internal class MainWindowViewModel : INotifyPropertyChanged
     {
         public ObservableCollection<Person> People { get; set; }
+        
         private bool _upper;
+
+        private Person _currentPerson;
+
+        public Person CurrentPerson
+        {
+            get => _currentPerson;
+            set
+            {
+                _currentPerson = value;
+                PropertyChangedEventHandler();
+            }
+        }
 
         public MainWindowViewModel() { 
             
@@ -34,5 +49,11 @@ namespace WpfApp
             }
             _upper = !_upper;
         }
+        private void PropertyChangedEventHandler([CallerMemberName] string propertyname = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyname));
+        }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
     }
 }

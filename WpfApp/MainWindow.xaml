@@ -11,7 +11,7 @@
         <local:MainWindowViewModel/>
     </Window.DataContext>
     <StackPanel x:Name="myStackpanel" Margin="20">
-        <ListView  x:Name="ListViewPeople" ItemsSource="{Binding People,Mode=TwoWay}" Margin="0,0,0,20" >
+        <ListView  x:Name="ListViewPeople" ItemsSource="{Binding People,Mode=TwoWay}" Margin="0,0,0,20" SelectionChanged="ListViewPeople_SelectionChanged" >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <WrapPanel>
@@ -21,17 +21,16 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <ListView ItemsSource="{Binding People,Mode=TwoWay}" Margin="0,0,0,20" >
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <WrapPanel>
-                        <TextBlock Text="Name: " />
-                        <TextBlock Text="{Binding Name}"/>
-                    </WrapPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-        <Button x:Name="BtnToUpper" Content="Toggle Case" Click="BtnToggle_Click"/>
-        
+        <DataGrid x:Name="DataGrid" Height="150" ItemsSource="{Binding People,Mode=TwoWay}" Margin="0,20,0,0" SelectionChanged="DataGrid_SelectionChanged"  AutoGenerateColumns="False">
+             <DataGrid.Columns >
+                <DataGridTextColumn Header="Prénom" Binding="{Binding Name}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+      
+        <Button  x:Name="BtnToUpper" Content="Toggle Case" Click="BtnToggle_Click" Margin="0,20,0,0"/>
+        <StackPanel Margin="0,20,0,0">
+            <TextBlock>Prénom</TextBlock>
+            <TextBox Text="{Binding CurrentPerson.Name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        </StackPanel>
     </StackPanel>
 </Window>

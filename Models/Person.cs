@@ -21,15 +21,20 @@ namespace Models
         {
             Name = name;
         }
-        private void PropertyChangedEventHandler([CallerMemberName] string propertyname = null)
+
+        public Person():this("")
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyname));
         }
 
         public override string ToString()
         {
             return Name;
 
+        }
+
+        private void PropertyChangedEventHandler([CallerMemberName] string propertyname = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyname));
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
