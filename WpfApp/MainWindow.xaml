@@ -7,12 +7,11 @@
         xmlns:Models="clr-namespace:Models;assembly=Models" x:Class="WpfApp.MainWindow"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <Window.DataContext>
+        <local:MainWindowViewModel/>
+    </Window.DataContext>
     <StackPanel x:Name="myStackpanel" Margin="20">
-        <StackPanel.DataContext>
-            <local:MainWindowViewModel/>
-        </StackPanel.DataContext>
-
-        <ListView  x:Name="ListViewPeople" ItemsSource="{Binding People,Mode=TwoWay}" >
+        <ListView  x:Name="ListViewPeople" ItemsSource="{Binding People,Mode=TwoWay}" Margin="0,0,0,20" >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <WrapPanel>
@@ -22,6 +21,17 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button x:Name="BtnToUpper" Content="Toggle Case" Click="BtnToggle_Click" Margin="0,20,0,0"/>
+        <ListView ItemsSource="{Binding People,Mode=TwoWay}" Margin="0,0,0,20" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <WrapPanel>
+                        <TextBlock Text="Name: " />
+                        <TextBlock Text="{Binding Name}"/>
+                    </WrapPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button x:Name="BtnToUpper" Content="Toggle Case" Click="BtnToggle_Click"/>
+        
     </StackPanel>
 </Window>

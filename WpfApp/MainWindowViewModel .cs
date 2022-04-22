@@ -16,11 +16,13 @@ namespace WpfApp
 
         public MainWindowViewModel() { 
             
-            People = new ObservableCollection<Person>();
-            People.Add(new Person("Toto"));
-            People.Add(new Person("Titi"));
-            People.Add(new Person("Tata"));
-            People.Add(new Person("Tutu"));
+            People = new ObservableCollection<Person>
+            {
+                new Person("Toto"),
+                new Person("Titi"),
+                new Person("Tata"),
+                new Person("Tutu")
+            };
             _upper = false;
         }
         
@@ -28,15 +30,7 @@ namespace WpfApp
         {
             foreach (Person person in People)
             {
-              if (_upper)
-                {
-                    person.Name = person.Name.ToLower();
-                }
-                else
-                {
-                    person.Name = person.Name.ToUpper();
-                }
-                
+                person.Name = _upper ? person.Name.ToLower() : person.Name.ToUpper();
             }
             _upper = !_upper;
         }

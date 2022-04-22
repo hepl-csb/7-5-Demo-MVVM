@@ -26,6 +26,12 @@ namespace Models
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyname));
         }
 
+        public override string ToString()
+        {
+            return Name;
+
+        }
+
         public event PropertyChangedEventHandler? PropertyChanged;
 
     }
